@@ -8,8 +8,10 @@
 </head>
 <body>
 <form action="LoginController/login" method="post">
+Ename:<input type="text" name="ename"><br>
+password:<input type="password" name="password"><br>
 
-<input type="submit">
+<input type="submit" >
 
 </form>
 </body>

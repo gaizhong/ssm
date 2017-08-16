@@ -20,6 +20,7 @@ public class LoginController {
 		System.out.println("--------");
 		String ename=request.getParameter("ename");
 		String password=request.getParameter("password");
+		System.out.println("ename   "+ename+"  password  "+password);
 		loginService.getUser();
 		return "loginsucc";
 	}

@@ -11,15 +11,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import entity.User;
-/** 
- *@author WHD 
- *2015-3-18 
- */
+import loginDao.LoginDao;
+
 /**
  * repository 说明就是一个dao层的注解
  */
 @Repository
-public class LoginDaoImpl {
+public class LoginDaoImpl implements LoginDao{
 	/**
 	 * 自动注入这里spring管理了mybatis的sqlsessionfactory
 	 */
