@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%request.setCharacterEncoding("utf-8");%>
+    <%request.setCharacterEncoding("UTF-8");%>
+    <%response.setHeader("Charset","UTF-8");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,11 +47,17 @@
 	  
 	        //    var data = new Function("return" + xhr.responseText)()//反序列化  
 	  		var val=xhr.responseText;
+	        
 	        alert(val);
+	        if(val==1){
+	        	alert("已被占用");
+	        }else{
+	        	alert("可以使用");
+	        }
 	        }  
 	    }  
 	  
-	    xhr.open("GET", 'LoginController/checkEname?ename='+ename, true);  
+	    xhr.open("post", 'LoginController/checkEname?ename='+ename, true);  
 // 	    //返回数据需要是json格式，这个需要调整
 // 	    function processRequest(data) {  
 // 	        alert("111:"+data);  

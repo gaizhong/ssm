@@ -28,7 +28,7 @@ public class LoginController {
 		String password=request.getParameter("password");
 		System.out.println("ename   "+ename+"  password  "+password);
 		loginService.getUser();
-		return "loginsucc";
+		return "test";
 	}
 	
 	@RequestMapping("checkEname")
@@ -40,11 +40,13 @@ public class LoginController {
 //		// 获得response对象,项页面输出:
 //		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
+		System.out.println(request.getCharacterEncoding());
+		response.setCharacterEncoding("utf-8");
 //		// 判断
 		if (ename != null&&ename.equals("zhang")) {
-			return "该名称不可用";
+			return "1";
 		}
-		return "该用户名可以使用";
+		return "0";
 	//	return "["+"a"+":"+1+"]";
 	}
 }
