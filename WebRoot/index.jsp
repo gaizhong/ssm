@@ -47,17 +47,15 @@
 	  
 	        //    var data = new Function("return" + xhr.responseText)()//反序列化  
 	  		var val=xhr.responseText;
-	        
-	        alert(val);
-	        if(val==1){
-	        	alert("已被占用");
-	        }else{
-	        	alert("可以使用");
-	        }
+		        if(val==1){
+		        	document.getElementById("ch").innerHTML="重新设置名字";
+		        }else{
+		        	document.getElementById("ch").innerHTML="";
+		        }
 	        }  
 	    }  
 	  
-	    xhr.open("post", 'LoginController/checkEname?ename='+ename, true);  
+	    xhr.open("post", 'LoginController/checkEname?ename='+escape(encodeURIComponent(ename)), true);  
 // 	    //返回数据需要是json格式，这个需要调整
 // 	    function processRequest(data) {  
 // 	        alert("111:"+data);  
@@ -75,24 +73,16 @@
 <form action="LoginController/login" method="post">
 Ename:<input type="text" name="ename"><br>
 password:<input type="password" name="password"><br>
-
 <input type="submit" value="登录"><br>
+</form>
 <hr>
 注册<br>
-<form action="LoginController/regist" method="post">
+<form action="LoginController/register" method="post">
 姓名:<input type="text" name="name"><br>
-登录名:<input type="text" name="ename" id="ename"><br>
+登录名:<input type="text" name="ename" id="ename" onblur="infoCheck()"> <font id="ch" name="ch"></font><br>
 密码:<input type="password" name="password" id="password"><br>
 密码确定:<input type="password" name="pwdConfirm" id="pwdConfirm"><br>
-
-<input type="button" value="检查信息" onclick="infoCheck()" >
 <input type="submit" value="注册"  >
-
-
-
-
-
-
 </form>
 </body>
 </html>

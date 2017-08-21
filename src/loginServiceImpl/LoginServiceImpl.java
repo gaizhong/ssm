@@ -1,5 +1,7 @@
 package loginServiceImpl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,18 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	public User queryUser(String id){
-			
-		return null;
+		User u=loginDaoImpl.queryUser(id);
+		return u;
 		
+	}
+
+	@Override//注册时填写name，ename，password
+	public boolean registerUser(User u) {
+		System.out.println(u);
+		UUID uuid=UUID.randomUUID();
+		u.setId(uuid.randomUUID().toString().replace("-", ""));
+		System.out.println(u);
+		loginDaoImpl.insertUser(u);
+		return true;
 	}
 }

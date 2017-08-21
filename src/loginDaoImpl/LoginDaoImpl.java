@@ -36,4 +36,15 @@ public class LoginDaoImpl implements LoginDao{
 		SqlSession session = sqlSessionFactory.openSession();
 		return session.selectOne("mybatis.queryUser", id);
 	}
+
+
+	@Override
+	public boolean insertUser(User u) {
+		SqlSession session = sqlSessionFactory.openSession();
+		System.out.println("插入操作:");
+		System.out.println(u);
+		int insert = session.insert("insertUser", u);
+		System.out.println("insert:"+insert);
+		return true;
+	}
 }

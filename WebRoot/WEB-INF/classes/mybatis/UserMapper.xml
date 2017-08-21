@@ -5,17 +5,9 @@
 <mapper namespace="mybatis">  
 <!-- parameterType就是你接受的参数的类型，  -->  
 <!-- 添加用户信息 -->  
-<insert id="insertUserMap"  parameterType="java.util.Map">  
- insert  into  mytest(id,name,sex)  values(#{id},#{name},#{sex})  
+<insert id="insertUser"  parameterType="entity.User">  
+ insert  into  User(id,name,ename,password)  values(#{id},#{name},#{ename},#{password})  
 </insert>  
-  
-<delete id="delUser" parameterType="int">  
- delete  from  mytest where id=#{id}  
-</delete>  
-  
-<update id="updateUser" parameterType="java.util.Map">  
-update mytest set name=#{name},sex=#{sex} where id=#{id}  
-</update>  
   
 <!--  查询返回的是 list<map> -->  
 <!-- resultType 就是返回查询结果的类型，而如果是resultMap=则返回的就是你定义的javabean  -->  
