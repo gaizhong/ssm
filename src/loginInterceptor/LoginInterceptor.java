@@ -29,7 +29,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
             throws Exception {
-        System.out.println("请求通过后完成一些清理工作");
+//        System.out.println("请求通过后完成一些清理工作");
     }
     /**
      * Intercept the execution of a handler. Called after HandlerAdapter actually invoked the handler, but before the DispatcherServlet renders the view. Can expose additional model objects to the view via the given ModelAndView. 
@@ -61,13 +61,12 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
         //拦截请求,当前是访问路径在许可范围内，以下所做的就是对非允许范围内的路径(没登录的用户)做拦截
-        if(flag){   //如果是非公开的页面↓,admin=null为空
-            	//用户登陆过，验证通过，放行
-            	System.out.println("AuthorizationInterceptor放行请求-->controller");
-            	System.out.println(request.getParameter("ename"));
+        if(flag){   //如果是需要拦截的页面,User==null，用户信息为空
+            	//是不用拦截的页面
+            	System.out.println("放行请求-->controller");
         }else{
         	//不允许的访问路径，需要判断是否有用户信息，没有的话，让其重新登录，就跳转登录界面
-        	//所以需要用户在登录或者注册时就把用户信息放入session中
+        	//所以需要用户在登录或者注册后就把用户信息放入session中，后面使用邮件发送验证信息，注册的页面就不用拦截.
         	User u=(User) session.getAttribute("User");
         	//如果用户不为空，表示已经有登录的用户信息，放行
         	if(u==null){

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>spring</title>
+<title>22222222222222222</title>
 <script type="text/javascript">
 
 	function createXmlHttp() {  
@@ -70,8 +70,7 @@
 </script>
 </head>
 <body>
-<!--
- 登录<br>
+登录<br>
 <form action="LoginController/login" method="post">
 Ename:<input type="text" name="ename"><br>
 password:<input type="password" name="password"><br>
@@ -89,13 +88,7 @@ password:<input type="password" name="password"><br>
 <hr>
 更新<br>
 <form action="LoginController/updateUserInfo" method="post">
-
 <input type="submit" value="更新"  >
-<a href="index2.jsp">index2</a> 
--->
-
-<a href="login.jsp">登录</a>
-<a href="register.jsp">注册</a>
 </form>
 </body>
 </html>
