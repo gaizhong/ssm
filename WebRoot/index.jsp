@@ -84,5 +84,11 @@ password:<input type="password" name="password"><br>
 密码确定:<input type="password" name="pwdConfirm" id="pwdConfirm"><br>
 <input type="submit" value="注册"  >
 </form>
+<hr>
+更新<br>
+<form action="LoginController/updateUserInfo" method="post">
+
+<input type="submit" value="更新"  >
+</form>
 </body>
 </html>

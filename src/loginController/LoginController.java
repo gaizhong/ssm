@@ -6,6 +6,7 @@ import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class LoginController {
 	@Autowired
 	HttpServletResponse response;
 	@Autowired
+	HttpSession session;
+	@Autowired
 	LoginService loginService;
 	@RequestMapping("/login")
 	public String login(){
@@ -36,13 +39,14 @@ public class LoginController {
 		return "test";
 	}
 	
-	@RequestMapping("checkEname")
+	@RequestMapping("/checkEname")
 	@ResponseBody
 	public String checkEname(){
 		String ename=request.getParameter("ename");
 		try {
-			String str=URLDecoder.decode(ename, "utf-8");
-			 ename=URLDecoder.decode(ename, "utf-8");
+			ename=URLDecoder.decode(ename, "utf-8");
+//			String str=URLDecoder.decode(ename, "utf-8");
+			System.out.println(ename);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,6 +57,7 @@ public class LoginController {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
 		User u=loginService.queryUser(ename);
+		System.out.println(u);
 //		// 判断
 		if (u!=null) {
 			return "1";
@@ -72,8 +77,14 @@ public class LoginController {
 		u.setEname(ename);
 		u.setPassword(password);
 		System.out.println("setter-->"+name+"  "+ename +"  "+password);
+		session.setAttribute("User", u);
 		boolean bool=loginService.registerUser(u);
 		System.out.println(bool);
 		return "completeUserInfo";
+	}
+	@RequestMapping("/updateUserInfo")
+	public String updateUserInfo(){
+		System.out.println("进入更新的controller");
+		return "updateUserInfo";
 	}
 }

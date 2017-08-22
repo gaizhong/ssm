@@ -12,7 +12,7 @@
 <!--  查询返回的是 list<map> -->  
 <!-- resultType 就是返回查询结果的类型，而如果是resultMap=则返回的就是你定义的javabean  -->  
 <select  id="queryUser"  parameterType="String" resultType="entity.User">  
-  select  * from user where id=#{id}  
+  select  * from user where ename=#{ename}  
 </select>  
   
 </mapper>

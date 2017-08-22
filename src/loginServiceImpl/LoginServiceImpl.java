@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String getUser() {
 		System.out.println("进入serviceImpl");
-		User u=loginDaoImpl.queryUser("1");
+		User u=loginDaoImpl.queryUser("盖仲");
 		System.out.println(u);
 		return null;
 	}
