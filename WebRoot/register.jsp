@@ -30,7 +30,12 @@
 
 	function infoCheck(){
 		var ename=document.getElementById("ename").value;
-		
+		var password=document.getElementById("password").value;
+		var pwdConfirm=document.getElementById("pwdConfirm").value;
+		if(password!=pwdConfirm){
+			alert("两次密码不统一");
+			return ;
+		}
 		//验证登录用户名是否存在，类似的可以验证手机号什么的
 		// 1.创建异步对象  
 	    var xhr = createXmlHttp();  
@@ -42,7 +47,7 @@
 		        if(val==1){
 		        	document.getElementById("ch").innerHTML="重新设置名字";
 		        	document.getElementById("ename").focus();
-		        	return false;
+		        	return;
 		        }else{
 		        	document.getElementById("ch").innerHTML="";
 		        }
@@ -57,36 +62,37 @@
 	    // 4.发送  
 	    xhr.send(null);  
 	} 
-function submitInfo(){
-	var name=document.getElementById("name").value;
-	var ename=document.getElementById("ename").value;
-	var password=document.getElementById("password").value;
-	var pwdConfirm=document.getElementById("pwdConfirm").value;
-	name=name.replace(/(^\s*)|(\s*$)/g, "");
-	ename=ename.replace(/(^\s*)|(\s*$)/g, "");
-	password=password.replace(/(^\s*)|(\s*$)/g, "");
-	pwdConfirm=pwdConfirm.replace(/(^\s*)|(\s*$)/g, "");
-	if(name.length==0||name=="	"||name.langth=="undefined") {
-	//alert(name.langth);
-	//alert(111);
-	alert("姓名为必填项");
-	return ;
-	}
-	if(ename.length==0||ename=="	"||ename.langth=="undefined") {
-	alert("登录名为必填项");
-	return ;
-	}
-	if(password.length==0||password=="	"||password.langth=="undefined") {
-	alert("密码为必填项");
-	return;
-	}
-	if(password!=pwdConfirm){
-		alert("两次密码不统一");
+
+	function submitInfo(){
+		var name=document.getElementById("name").value;
+		var ename=document.getElementById("ename").value;
+		var password=document.getElementById("password").value;
+		var pwdConfirm=document.getElementById("pwdConfirm").value;
+		name=name.replace(/(^\s*)|(\s*$)/g, "");
+		ename=ename.replace(/(^\s*)|(\s*$)/g, "");
+		password=password.replace(/(^\s*)|(\s*$)/g, "");
+		pwdConfirm=pwdConfirm.replace(/(^\s*)|(\s*$)/g, "");
+		if(name.length==0||name=="	"||name.langth=="undefined") {
+		//alert(name.langth);
+		//alert(111);
+		alert("姓名为必填项");
 		return ;
+		}
+		if(ename.length==0||ename=="	"||ename.langth=="undefined") {
+		alert("登录名为必填项");
+		return ;
+		}
+		if(password.length==0||password=="	"||password.langth=="undefined") {
+		alert("密码为必填项");
+		return;
+		}
+		if(password!=pwdConfirm){
+			alert("两次密码不统一");
+			return ;
+		}
+		 document.getElementById("form").submit();
 	}
-	 document.getElementById("form").submit();
-}
-	
+		
 
 </script>
 <title>个人注册</title>

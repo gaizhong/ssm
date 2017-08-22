@@ -34,6 +34,7 @@ public class LoginDaoImpl implements LoginDao{
 	 */
 	public User queryUser(User u) {
 		SqlSession session = sqlSessionFactory.openSession();
+		System.out.println("进入daoimpl的-->"+u);
 		return session.selectOne("mybatis.queryUser", u);
 	}
 

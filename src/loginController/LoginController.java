@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -61,6 +62,7 @@ public class LoginController {
 		User u=new User();
 		u.setEname(ename);
 		User user=loginService.queryUser(u);
+		System.out.println(user);
 //		// 判断
 		if (user!=null) {
 			return "1";
@@ -70,7 +72,8 @@ public class LoginController {
 	}
 	//注册使用完了进入个人现实页面，并完善个人信息
 	@RequestMapping("/register")
-	public String register(){
+	@ResponseBody
+	public void register(){
 		String name=request.getParameter("name");
 		String ename=request.getParameter("ename");
 		String password=request.getParameter("password");
@@ -82,8 +85,14 @@ public class LoginController {
 		System.out.println("setter-->"+name+"  "+ename +"  "+password);
 		session.setAttribute("User", u);
 		boolean bool=loginService.registerUser(u);
-		System.out.println(bool);
-		return "completeUserInfo";
+		String path=request.getContextPath();
+		try {
+			response.sendRedirect(path+"/login.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		return "completeUserInfo";
 	}
 	@RequestMapping("/updateUserInfo")
 	public String updateUserInfo(){
