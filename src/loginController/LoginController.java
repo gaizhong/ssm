@@ -35,7 +35,9 @@ public class LoginController {
 		String ename=request.getParameter("ename");
 		String password=request.getParameter("password");
 		System.out.println("ename   "+ename+"  password  "+password);
-		loginService.getUser();
+		User u=new User();
+		u.setName(ename);
+		User user=loginService.queryUser(u);
 		return "test";
 	}
 	
@@ -56,10 +58,11 @@ public class LoginController {
 //		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
-		User u=loginService.queryUser(ename);
-		System.out.println(u);
+		User u=new User();
+		u.setEname(ename);
+		User user=loginService.queryUser(u);
 //		// 判断
-		if (u!=null) {
+		if (user!=null) {
 			return "1";
 		}
 		return "0";

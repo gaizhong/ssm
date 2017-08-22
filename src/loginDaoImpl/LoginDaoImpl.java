@@ -29,12 +29,12 @@ public class LoginDaoImpl implements LoginDao{
 	/**
 	 * 查询用户信息
 	 * 
-	 * @param id
+	 * @param u
 	 * @return
 	 */
-	public User queryUser(String id) {
+	public User queryUser(User u) {
 		SqlSession session = sqlSessionFactory.openSession();
-		return session.selectOne("mybatis.queryUser", id);
+		return session.selectOne("mybatis.queryUser", u);
 	}
 
 
@@ -42,9 +42,10 @@ public class LoginDaoImpl implements LoginDao{
 	public boolean insertUser(User u) {
 		SqlSession session = sqlSessionFactory.openSession();
 		System.out.println("插入操作:");
-		System.out.println(u);
 		int insert = session.insert("insertUser", u);
-		System.out.println("insert:"+insert);
-		return true;
+		if(insert==1){
+			return true;
+		}else
+		return false;
 	}
 }

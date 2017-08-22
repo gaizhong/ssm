@@ -14,26 +14,16 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	LoginDaoImpl loginDaoImpl;
 
-	@Override
-	public String getUser() {
-		System.out.println("进入serviceImpl");
-		User u=loginDaoImpl.queryUser("盖仲");
-		System.out.println(u);
-		return null;
-	}
-	
-	public User queryUser(String id){
-		User u=loginDaoImpl.queryUser(id);
-		return u;
+	public User queryUser(User u){
+		User user=loginDaoImpl.queryUser(u);
+		return user;
 		
 	}
 
 	@Override//注册时填写name，ename，password
 	public boolean registerUser(User u) {
-		System.out.println(u);
 		UUID uuid=UUID.randomUUID();
 		u.setId(uuid.randomUUID().toString().replace("-", ""));
-		System.out.println(u);
 		loginDaoImpl.insertUser(u);
 		return true;
 	}
