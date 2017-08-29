@@ -60,6 +60,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 break;
             }
         }
+        System.out.println("过滤完成---------------------"+flag);
         //拦截请求,当前是访问路径在许可范围内，以下所做的就是对非允许范围内的路径(没登录的用户)做拦截
         if(flag){   //如果是需要拦截的页面,User==null，用户信息为空
             	//是不用拦截的页面
@@ -67,8 +68,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         }else{
         	//不允许的访问路径，需要判断是否有用户信息，没有的话，让其重新登录，就跳转登录界面
         	//所以需要用户在登录或者注册后就把用户信息放入session中，后面使用邮件发送验证信息，注册的页面就不用拦截.
-        	User u=(User) session.getAttribute("User");
+        	User u=(User) session.getAttribute("user");
+        	System.out.println(u);
         	//如果用户不为空，表示已经有登录的用户信息，放行
+        	flag=true;
         	if(u==null){
         		System.out.println("没有对象信息,请重新登录");
         		request.getRequestDispatcher("login.jsp").forward(request, response);

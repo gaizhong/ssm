@@ -18,5 +18,20 @@ password:<input type="password" name="password"><br>
 </form>
 <hr>
 </form>
+
+
+
+<hr>
+
+<form action="LoginController/photoUpLoad" method="post"
+		enctype="multipart/form-data">
+		<input type="file" name="file"> 
+		
+		<input type="submit" value="pin">
+
+	</form>
+
+
+
 </body>
 </html>
